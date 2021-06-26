@@ -1,23 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
+@section('title', 'halaman utama')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard User') }}</div>
+@section('container')
+    <!-- Begin Page Content -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-fluid">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('Ini Halaman User') }}
-                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
