@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.app')
 @section('title', 'Home')
 @section('content')
@@ -43,8 +44,18 @@
                         </div>
                     </div>
                 </div>
+=======
+@extends('layouts.main')
+@section('title', 'halaman utama')
+
+@section('container')
+    <!-- Begin Page Content -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-fluid">
+
+>>>>>>> 17b322259d48314986a019c27f03d5d6fdbc6fde
             </div>
         </div>
     </div>
-</div>
 @endsection
