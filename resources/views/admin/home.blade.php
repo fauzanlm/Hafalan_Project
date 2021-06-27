@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'halaman utama')
+@section('title', 'Home - Admin')
 
 @section('container')
     <!-- Begin Page Content -->
