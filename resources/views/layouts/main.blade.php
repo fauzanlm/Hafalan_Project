@@ -43,7 +43,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('setoran.create')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <li class=" fa fa-code"></li>
                 </div>
@@ -56,13 +56,13 @@
             <!-- Nav Item - Dashboard -->
             @if (Auth::user()->role == 'user')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('setoran.create')}}">
+                    <a class="nav-link" href="{{route('home')}}">
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('history')}}">
+                    <a class="nav-link" href="{{route('user.history')}}">
                         <i class="fas fa-history"></i>
                         <span>History</span>
                     </a>

@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'role' => 'petugas',
         ],
         [
-            'nis'=>10010,
+            'nis'=>100101,
             'name' => 'User1',
             'email' => 'user1@gmail.com',
             'password' => hash::make('user123'),

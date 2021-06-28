@@ -27,15 +27,15 @@
                               <h5 class="modal-title" id="setoranModal">Setoran</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="{{route('setoran.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
-                                    <label for="inputSurat">NIS</label>
-                                    <input type="text" name="nis" id="inputSurat" class="form-control" value="{{old('nis')}}">
-                                    <label for="inputSurat">NAMA</label>
-                                    <input type="text" name="name" id="inputSurat" class="form-control" value="{{old('name')}}">
-                                    <label for="inputSurat">JUZ</label>
-                                    <input type="text" name="juz" id="inputSurat" class="form-control" value="{{old('juz')}}">
+                                   
+                                    <input type="hidden" value="{{ Auth::user()->nis }}" name="nis" id="" class="form-control" value="{{old('nis')}}">
+                                   
+                                    <input type="hidden" value="{{ Auth::user()->name }}" name="name" id="" class="form-control" value="{{old('name')}}">
+                                    <label for="">JUZ</label>
+                                    <input type="text" name="juz" id="" class="form-control" value="{{old('juz')}}">
                                     <label for="inputSurat">SURAT</label>
                                     <input type="text" name="surat" id="inputSurat" class="form-control" value="{{old('surat')}}">
                                     <label for="audio">Rekaman Hafalan</label>

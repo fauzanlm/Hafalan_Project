@@ -12,6 +12,11 @@ class SetoranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data = Setoran::all();
@@ -36,6 +41,7 @@ class SetoranController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'nis' => 'required|unique:setorans|digits:6',
             'name' => 'required',
@@ -46,16 +52,19 @@ class SetoranController extends Controller
 
         $audio = $request->audio->getClientOriginalName();
         $request->audio->move(public_path('audio'), $audio);
-
-        Setoran::create([
+        
+        $setor = Setoran::create([
             'nis' => $request->nis,
             'name' => $request->name,
             'juz' => $request->juz,
             'surat' => $request->surat,
             'audio' => $audio
         ]);
-
-        return redirect()->route('history');
+        if ($setor) {
+            return redirect()->route('user.history')->with('status', 'Berhasil menyetorkan audio');
+        }else {
+            return back()->with('status', 'Gagal menyetorkan hafalan');
+        }
 
 
     }

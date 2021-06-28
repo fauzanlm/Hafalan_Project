@@ -33,7 +33,7 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
         'reset'=>false,
     ]);
     Route::group(['middleware' => 'auth'], function(){
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //ini home semua role
 
         Route::group(['middleware' => 'role:admin'], function(){
             Route::get('/admin/santri', [AdminController::class, 'index'])->name('admin.list');
@@ -42,10 +42,8 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
         });
 
         Route::group(['middleware' => 'role:user'], function(){
-            Route::get('/home', [SetoranController::class, 'create'])->name('setoran.create');
-            Route::post('/setoran', [SetoranController::class, 'store'])->name('setoran.store');
-            Route::get('/history', [SetoranController::class, 'index'])->name('history');
-
+            Route::post('/home/store', [SetoranController::class, 'store'])->name('user.store');
+            Route::get('/history', [SetoranController::class, 'index'])->name('user.history');
         });
     });
 
