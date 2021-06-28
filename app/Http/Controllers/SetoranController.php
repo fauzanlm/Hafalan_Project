@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Setoran;
 
 class SetoranController extends Controller
 {
@@ -13,7 +14,8 @@ class SetoranController extends Controller
      */
     public function index()
     {
-        //
+        $data = Setoran::all();
+        return view('user.history', compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class SetoranController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.home');
     }
 
     /**
@@ -34,7 +36,28 @@ class SetoranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nis' => 'required|unique:setorans|digits:6',
+            'name' => 'required',
+            'juz' => 'required',
+            'surat'=> 'required',
+            'audio' => 'required|mimes:mp3'
+        ]);
+
+        $audio = $request->audio->getClientOriginalName();
+        $request->audio->move(public_path('audio'), $audio);
+
+        Setoran::create([
+            'nis' => $request->nis,
+            'name' => $request->name,
+            'juz' => $request->juz,
+            'surat' => $request->surat,
+            'audio' => $audio
+        ]);
+
+        return redirect()->route('history');
+
+
     }
 
     /**
@@ -79,6 +102,10 @@ class SetoranController extends Controller
      */
     public function destroy($id)
     {
+        //
+    }
+
+    public function history(){
         //
     }
 }
