@@ -3,11 +3,14 @@
 
 @section('container')
     <!-- Begin Page Content -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-fluid">
-
-            </div>
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
         </div>
-    </div>
+    @endif
+    @if (session('failed'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('failed') }}
+        </div>
+    @endif
 @endsection

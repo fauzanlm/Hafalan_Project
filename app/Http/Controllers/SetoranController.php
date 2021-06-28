@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setoran;
+use Auth;
 
 class SetoranController extends Controller
 {
@@ -19,7 +20,7 @@ class SetoranController extends Controller
     
     public function index()
     {
-        $data = Setoran::all();
+        $data = Setoran::where('nis', Auth::user()->nis)->get();
         return view('user.history', compact('data'));
     }
 
@@ -43,7 +44,7 @@ class SetoranController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'nis' => 'required|unique:setorans|digits:6',
+            'nis' => 'required|digits:6',
             'name' => 'required',
             'juz' => 'required',
             'surat'=> 'required',
@@ -60,10 +61,11 @@ class SetoranController extends Controller
             'surat' => $request->surat,
             'audio' => $audio
         ]);
+
         if ($setor) {
-            return redirect()->route('user.history')->with('status', 'Berhasil menyetorkan audio');
+            return redirect()->route('user.history')->with('success', 'Audio has been sent successfully');
         }else {
-            return back()->with('status', 'Gagal menyetorkan hafalan');
+            return back()->with('failed', 'Audio failed to send');
         }
 
 

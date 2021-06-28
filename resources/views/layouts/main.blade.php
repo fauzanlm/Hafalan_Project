@@ -18,21 +18,19 @@
     </title>
 
     <!-- Custom fonts for this template -->
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"> --}}
     <link href={{asset('vendor/fontawesome-free/css/all.min.css')}} rel="stylesheet" type="text/css">
-    <link
-    href={{asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')}}
-    rel="stylesheet">
+    <link href={{asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')}} rel="stylesheet">
     <link rel="icon" href="http://localhost:8000/logo/wk_logo.png">
     <!-- Custom styles for this template -->
 
     <link href={{asset('css/sb-admin-2.min.css')}} rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
     <!-- Custom styles for this page -->
     <link href={{asset('vendor/datatables/dataTables.bootstrap4.min.css')}} rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
 
 </head>
 
@@ -188,8 +186,22 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
-
-                @yield('container')
+                <div class="mx-2 row justify-content-center">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="container-fluid">
+                                            @yield('container')
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
             </div>
 
             <!-- Footer -->
@@ -240,13 +252,13 @@
     </div>
 
 
-
+    
     <!-- Bootstrap core JavaScript-->
     <script src={{asset('vendor/jquery/jquery.min.js')}}></script>
     <script>
         setTimeout(function() {
             $('.alert').fadeOut('fast');
-        }, 10000); // <-- time in milliseconds
+        }, 4000); // <-- time in milliseconds
     </script>
     <script src={{asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}></script>
 

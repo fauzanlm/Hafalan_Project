@@ -50,14 +50,18 @@ class AdminController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        User::create([
+        $setor = User::create([
             'nis' => $request['nis'],
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-
-        return redirect('/admin/santri');
+        if ($setor) {
+            return redirect('/admin/santri')->with('success','data has been successfully added');
+        } else {
+            return redirect('/admin/santri')->with('failed','data failed to add');
+        }
+        
     }
 
     /**
@@ -79,7 +83,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::where('id', $id)->first();
+        return view('admin.edit', compact('data'));
     }
 
     /**
@@ -91,7 +96,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nis' => ['required', 'numeric', 'digits:6'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $update = User::find($id)->update([
+            'nis' => $request['nis'],
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+
+        if ($update) {
+            return redirect('/admin/santri')->with('success','data has been successfully update');
+        } else {
+            return redirect('/admin/santri')->with('failed','failed to update data');
+        }
     }
 
     /**

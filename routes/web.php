@@ -39,6 +39,8 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
             Route::get('/admin/santri', [AdminController::class, 'index'])->name('admin.list');
             Route::get('/admin/add/santri', [AdminController::class, 'create'])->name('admin.create');
             Route::post('/admin/add/santri/store', [AdminController::class, 'store'])->name('admin.store');
+            Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+            Route::patch('/admin/{id}/edit/store', [AdminController::class, 'update'])->name('admin.update');
         });
 
         Route::group(['middleware' => 'role:user'], function(){

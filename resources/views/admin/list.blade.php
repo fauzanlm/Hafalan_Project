@@ -3,56 +3,46 @@
 
 @section('container')
     <!-- Begin Page Content -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="container-fluid">
-                                    <a href="{{ route('admin.create') }}" class="btn btn-primary">Tambah User</a>
-                                    <table id="list" class="display">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>NIS</th>
-                                                <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Password</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $dt)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $dt->nis }}</td>
-                                                <td>{{ $dt->name }}</td>
-                                                <td>{{ $dt->email }}</td>
-                                                <td>{{ $dt->password }}</td>
-                                                <td></td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+ 
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
         </div>
-    </div>
-    <script>
-        $(document).ready(function() {
-            $('#list').DataTable({
-                "scrollY":'100vh',
-                "scrollCollapse":true,
-                "responsive": true,
-                "paging":false,
-                
-            } );
-        } );
-    </script>
+    @endif
+    @if (session('failed'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('failed') }}
+        </div>
+    @endif
+    <a href="{{ route('admin.create') }}" class="mb-2 btn btn-primary">Tambah User</a>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIS</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($data as $dt)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $dt->nis }}</td>
+                <td>{{ $dt->name }}</td>
+                <td>{{ $dt->email }}</td>
+                <td>
+                    <a href="{{ route('admin.edit',$dt->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="#" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger ">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+  
 @endsection
