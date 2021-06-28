@@ -18,7 +18,7 @@ class CreateSetoransTable extends Migration
             $table->string('nis');
             $table->string('name');
             $table->string('audio');
-            $table->enum('status',['belum diperiksa','sudah diperiksa', 'ditolak', 'ulangi'])->default('belum diperiksa');
+            $table->enum('status',['belum diperiksa','sudah diperiksa', 'ditolak', 'ulangi'])->default('belum diperiksa')->nullable();
             $table->timestamps();
         });
     }

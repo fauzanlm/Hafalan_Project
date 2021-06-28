@@ -24,7 +24,7 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
     Route::get('/register', function () {
         return redirect('/login');
     });
-    
+
     Auth::routes([
         'register'=>false,
         'password.request'=>false,
@@ -40,7 +40,13 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
             Route::get('/admin/add/santri', [AdminController::class, 'create'])->name('admin.create');
             Route::post('/admin/add/santri/store', [AdminController::class, 'store'])->name('admin.store');
         });
+
+        Route::group(['middleware' => 'role:user'], function(){
+            Route::get('/home', [SetoranController::class, 'create'])->name('setoran.create');
+            Route::post('/setoran', [SetoranController::class, 'store'])->name('setoran.store');
+            Route::get('/history', [SetoranController::class, 'index'])->name('history');
+
+        });
     });
-    
-    Route::resource('setor', SetoranController::class);
-});  
+
+});
