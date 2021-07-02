@@ -23,7 +23,6 @@
                             <th>Audio Hafalan</th>
                             <th>Rekaman</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,14 +37,6 @@
                                     </audio>
                                 </td>
                                 <td>{{$dt->status}}</td>
-                                <td>
-                                    <a href="#" class="btn btn-warning">Edit</a>
-                                <form action="#" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger ">Hapus</button>
-                                </form>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

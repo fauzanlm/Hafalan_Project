@@ -34,6 +34,7 @@ Route::group(['middleware' => 'prevent-back-history'], function(){
     ]);
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //ini home semua role
+        Route::get('/home/info', [App\Http\Controllers\HomeController::class, 'info'])->name('info'); //ini home semua role
 
         Route::group(['middleware' => 'role:admin'], function(){
             Route::get('/admin/santri', [AdminController::class, 'index'])->name('admin.list');

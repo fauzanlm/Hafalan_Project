@@ -16,15 +16,25 @@
 
     <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" value="{{ Auth::user()->nis }}" name="nis" id="" class="form-control" value="{{old('nis')}}">
+            <input type="hidden" value="{{ Auth::user()->name }}" name="name" id="" class="form-control" value="{{old('name')}}">
         <div class="mt-2">
             <label for="juz">JUZ</label>
-            <input type="text" name="juz" id="juz" class="form-control" value="{{old('juz')}}">
-            <input type="hidden" value="{{ Auth::user()->nis }}" name="nis" id="" class="form-control" value="{{old('nis')}}">
-            <input type="hidden" value="{{ Auth::user()->name }}" name="name" id="" class="form-control" value="{{old('name')}}">
+            <select name="juz" id="juz" class="form-control" :value="old('juz')" required>
+                <option class="opacity-50">Pilih Juz</option>
+                @for($juz=1;$juz <= 30; $juz++)
+                    <option value="{{ $juz }}">Juz {{ $juz }}</option>
+                @endfor
+            </select>
         </div>
         <div class="mt-2">
-            <label for="inputSurat">SURAT</label>
-            <input type="text" name="surat" id="inputSurat" class="form-control" value="{{old('surat')}}">
+            <label for="surah">SURAT</label>
+            <select name="surah" id="surah" class="form-control" :value="old('surah')" required>
+                <option class="opacity-50">Pilih Surah</option>
+                @foreach ($data as $dt)
+                    <option value="{{ $dt['nama_latin'] }}" class="">{{$dt['nama_latin']}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mt-2">
             <label for="audio">Rekaman Hafalan</label>
