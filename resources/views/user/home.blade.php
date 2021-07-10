@@ -32,7 +32,7 @@
             <select name="surah" id="surah" class="form-control" :value="old('surah')" required>
                 <option class="opacity-50">Pilih Surah</option>
                 @foreach ($data as $dt)
-                    <option value="{{ $dt['nama_latin'] }}" class="">{{$dt['nama_latin']}}</option>
+                    <option value="{{ $dt['nama_latin'] }}" class="">{{$dt['nomor']}}. {{$dt['nama_latin']}}</option>
                 @endforeach
             </select>
         </div>

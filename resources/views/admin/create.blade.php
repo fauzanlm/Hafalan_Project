@@ -76,6 +76,7 @@
                 <button type="submit" class="btn btn-primary">
                     {{ __('Tambah') }}
                 </button>
+                <a href="{{route('admin.list')}}" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </form>
